@@ -1,1 +1,1 @@
-# palindromeChecker
+# freeCodeCampProjects
