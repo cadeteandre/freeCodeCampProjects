@@ -1,0 +1,44 @@
+<script>
+const lookup = {
+  'A': 'N','B': 'O','C': 'P','D': 'Q',
+  'E': 'R','F': 'S','G': 'T','H': 'U',
+  'I': 'V','J': 'W','K': 'X','L': 'Y',
+  'M': 'Z','N': 'A','O': 'B','P': 'C',
+  'Q': 'D','R': 'E','S': 'F','T': 'G',
+  'U': 'H','V': 'I','W': 'J','X': 'K',
+  'Y': 'L','Z': 'M'
+};
+
+function rot13(encodedStr) {
+  let codeArr = encodedStr.split("");  
+  let decodedArr = []; 
+  decodedArr = codeArr.map(function(letter) {
+    if(lookup.hasOwnProperty(letter)) {
+      letter = lookup[letter];
+    }
+    return letter;
+  });
+  return decodedArr.join(""); 
+}
+
+console.log(rot13("V NZ NAQER"));
+
+//solution 2
+
+function rot13(str) {
+  let rotCharArray = [];
+  let regEx = /[A-Z]/;
+  str = str.split("");
+  for (var x in str) {
+    if (regEx.test(str[x])) {
+      rotCharArray.push(((str[x].charCodeAt() - 65 + 13) % 26) + 65);
+    } else {
+      rotCharArray.push(str[x].charCodeAt());
+    }
+  }
+  str = String.fromCharCode.apply(String, rotCharArray);
+  return str;
+}
+
+console.log(rot13("V NZ NAQER"));
+</script>
